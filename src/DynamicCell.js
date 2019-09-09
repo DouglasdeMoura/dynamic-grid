@@ -41,7 +41,7 @@ class DynamicCell extends React.Component {
         }
     }
 
-    handleIntChange= (key, item) => event => {
+    handleIntChange = (key, item) => event => {
         this.props.item[item.nat_autonumber] = event.target.value.replace(/\D/g, '');
         this.setState(this.props.item);
 
@@ -56,6 +56,12 @@ class DynamicCell extends React.Component {
 
         if (item.nat_onchange !== null && item.nat_onchange !== "") {
             this.props.func[item.nat_onchange](key, this.props.item, this.changeProperty, this.setEditable);
+        }
+    };
+
+    handleBlur = (key, item) => {
+        if (item.nat_onblur != null && item.nat_onblur !== "") {
+            this.props.func[item.nat_onblur](key, this.props.item);
         }
     };
 
@@ -100,7 +106,6 @@ class DynamicCell extends React.Component {
                                         }}
                                         InputProps={{ style: { fontSize: 10 } }}
                                         required
-                                        autoFocus
                                     />
                                 </CustomCell>
                             );
@@ -120,7 +125,6 @@ class DynamicCell extends React.Component {
                                         margin="normal"
                                         onChange={this.handleChange(item.nat_autonumber, item)}
                                         required
-                                        autoFocus
                                     />
                                 </CustomCell>
                             );
@@ -136,7 +140,6 @@ class DynamicCell extends React.Component {
                                         }}
                                         InputProps={{ style: { fontSize: 10 } }}
                                         required
-                                        autoFocus
                                     />
                                 </CustomCell>
                             );
@@ -150,7 +153,6 @@ class DynamicCell extends React.Component {
                                         value={this.props.item[item.nat_autonumber]}
                                         InputProps={{ style: { fontSize: 10 } }}
                                         required
-                                        autoFocus
                                     />
                                 </CustomCell>
                             );
@@ -167,7 +169,7 @@ class DynamicCell extends React.Component {
                                 <CustomCell key={item.nat_autonumber + index} onClick={this.handleClick(item.nat_autonumber, item)} className={item.nat_onclick ? 'readonly onClickClass' : 'readonly'}>
                                     <CustomButton href={this.props.item[item.nat_autonumber]} size="small" target="blank" key={item.nat_autonumber + index}>
                                         Link
-                            </CustomButton>
+                                    </CustomButton>
                                 </CustomCell>
                             );
                         case 'select':
@@ -178,7 +180,6 @@ class DynamicCell extends React.Component {
                                         select
                                         value={this.props.item[item.nat_autonumber]}
                                         required
-                                        autoFocus
                                         onChange={this.handleChange(item.nat_autonumber, item)}
                                     >
                                         {item.prop.options.map(option => (
@@ -196,9 +197,9 @@ class DynamicCell extends React.Component {
                                         key={item.nat_autonumber + index}
                                         value={this.props.item[item.nat_autonumber]}
                                         onChange={this.handleChange(item.nat_autonumber, item)}
+                                        onBlur={() => this.handleBlur(item.nat_autonumber, item)}
                                         InputProps={{ style: { fontSize: 10 } }}
                                         margin="normal"
-                                        autoFocus
                                         required
                                         className={'without-padding'}
                                     />
