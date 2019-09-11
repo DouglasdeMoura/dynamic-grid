@@ -4,7 +4,27 @@ import TableCell from '@material-ui/core/TableCell';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import Select from '@material-ui/core/Select';
 import NumberFormat from 'react-number-format';
+
+const CssSelect = withStyles({
+    root: {
+        margin: 0,
+        padding: 0,
+        font: "unset",
+        fontSize: 10,
+        lineHeight: 1.2
+    }
+})(Select);
+
+const CssMenuItem = withStyles({
+    root: {
+        padding: "2px",
+        font: "unset",
+        fontSize: 10,
+        lineHeight: 1.2
+    }
+})(MenuItem);
 
 const CssTextField = withStyles({
     root: {
@@ -61,7 +81,7 @@ class DynamicCell extends React.Component {
 
     handleBlur = (key, item) => {
         if (item.nat_onblur != null && item.nat_onblur !== "") {
-            this.props.func[item.nat_onblur](key, this.props.item);
+            this.props.func[item.nat_onblur](key, this.props.item, this.changeProperty, this.setEditable);
         }
     };
 
@@ -101,6 +121,7 @@ class DynamicCell extends React.Component {
                                         key={item.nat_autonumber + index}
                                         value={this.props.item[item.nat_autonumber]}
                                         onChange={this.handleIntChange(item.nat_autonumber, item)}
+                                        onBlur={() => this.handleBlur(item.nat_autonumber, item)}
                                         InputLabelProps={{
                                             shrink: true
                                         }}
@@ -124,6 +145,7 @@ class DynamicCell extends React.Component {
                                         max={item.prop.maxNumber}
                                         margin="normal"
                                         onChange={this.handleChange(item.nat_autonumber, item)}
+                                        onBlur={() => this.handleBlur(item.nat_autonumber, item)}
                                         required
                                     />
                                 </CustomCell>
@@ -135,6 +157,7 @@ class DynamicCell extends React.Component {
                                         key={item.nat_autonumber + index}
                                         value={this.props.item[item.nat_autonumber]}
                                         onChange={this.handleChange(item.nat_autonumber, item)}
+                                        onBlur={() => this.handleBlur(item.nat_autonumber, item)}
                                         InputProps={{
                                             inputComponent: NumberFormatCustom
                                         }}
@@ -150,6 +173,7 @@ class DynamicCell extends React.Component {
                                         key={item.nat_autonumber + index}
                                         type="date"
                                         onChange={this.handleChange(item.nat_autonumber, item)}
+                                        onBlur={() => this.handleBlur(item.nat_autonumber, item)}
                                         value={this.props.item[item.nat_autonumber]}
                                         InputProps={{ style: { fontSize: 10 } }}
                                         required
@@ -175,19 +199,26 @@ class DynamicCell extends React.Component {
                         case 'select':
                             return (
                                 <CustomCell key={item.nat_autonumber + index} align="left" onClick={this.handleClick(item.nat_autonumber, item)} className={item.nat_onclick ? 'onClickClass' : null}>
-                                    <CssTextField
+                                    <CssSelect
                                         key={item.nat_autonumber + index}
                                         select
                                         value={this.props.item[item.nat_autonumber]}
                                         required
                                         onChange={this.handleChange(item.nat_autonumber, item)}
+                                        onBlur={() => this.handleBlur(item.nat_autonumber, item)}
+                                        fullWidth
+                                        SelectDisplayProps={{
+                                            style: {
+                                                width: item.nat_width
+                                            }
+                                        }}
                                     >
                                         {item.prop.options.map(option => (
-                                            <MenuItem key={option.value} value={option.value}>
+                                            <CssMenuItem key={option.value} value={option.value}>
                                                 {option.displayText}
-                                            </MenuItem>
+                                            </CssMenuItem>
                                         ))}
-                                    </CssTextField>
+                                    </CssSelect>
                                 </CustomCell>
                             );
                         default:
@@ -267,20 +298,24 @@ class DynamicCell extends React.Component {
                             );
                         case 'select':
                             return (
-                                <CustomCell key={item.nat_autonumber + index} className="readonly" onClick={this.handleClick(item.nat_autonumber, item)} className={item.nat_onclick ? 'readonly onClickClass' : 'readonly'}>
-                                    <TextField
-                                        id="standard-select-currency"
-                                        select
+                                <CustomCell key={item.nat_autonumber + index} align="left" className={null}>
+                                    <CssSelect
+                                        key={item.nat_autonumber + index}
                                         value={this.props.item[item.nat_autonumber]}
                                         disabled
-
+                                        fullWidth
+                                        SelectDisplayProps={{
+                                            style: {
+                                                width: item.nat_width
+                                            }
+                                        }}
                                     >
                                         {item.prop.options.map(option => (
-                                            <MenuItem key={option.value} value={option.value}>
+                                            <CssMenuItem key={option.value} value={option.value}>
                                                 {option.displayText}
-                                            </MenuItem>
+                                            </CssMenuItem>
                                         ))}
-                                    </TextField>
+                                    </CssSelect>
                                 </CustomCell>
                             );
                         default:
