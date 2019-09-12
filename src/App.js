@@ -107,9 +107,11 @@ class SimpleTable extends React.Component {
         this.setState(Duplicate1);
     }
 
-    deletedItem(item) {
-        console.log(item);
-        // return true;
+    deletedItem(item, asyncDelete) {
+        setTimeout(() => {
+            asyncDelete();
+        }, 5000);
+        return true;
     }
 
 

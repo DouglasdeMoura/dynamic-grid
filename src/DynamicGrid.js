@@ -164,7 +164,12 @@ class DynamicGrid extends React.Component {
     removeItem = (event, id) => {
         var itemRemove = this.props.grid.Grid.Rows.filter(item => item.id === id);
         if (this.state.funcDeleted) {
-            const doNotRemoved = this.state.funcDeleted(itemRemove[0]);
+            const doNotRemoved = this.state.funcDeleted(itemRemove[0], () => {
+                var itens = this.props.grid.Grid.Rows.filter(item => item.id !== id);
+                this.props.grid.Grid.Rows = itens;
+                this.setState(this.props.grid.Grid.Rows);
+            });
+            
             if (!doNotRemoved) {
                 var itens = this.props.grid.Grid.Rows.filter(item => item.id !== id);
                 this.props.grid.Grid.Rows = itens;
