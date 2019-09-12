@@ -1,0 +1,119 @@
+{
+  "Grid": {
+    "GridColumn": [
+      {
+        "nat_autonumber": "001",
+        "nat_name": "Unidade",
+        "nat_exibitionnane": "Unidade",
+        "nat_position": 1,
+        "nat_order": true,
+        "nat_sorting": "asc",
+        "nat_readonly": false,
+        "nat_onchange": null,
+        "nat_exibition": true,
+        "nat_type": "select",
+        "nat_onclick": null,
+        "nat_width": "auto",
+        "prop": {
+          "nat_required": null,
+          "nat_maxdate": null,
+          "nat_mindate": null,
+          "nat_maxnumber": 0,
+          "nat_minnumber": 0,
+          "options": [
+            {
+              "value": 1,
+              "displayText": "Cajamar"
+            },
+            {
+              "value": 2,
+              "displayText": "NASP"
+            }
+          ]
+        }
+      },
+      {
+        "nat_autonumber": "002",
+        "nat_name": "Status",
+        "nat_exibitionnane": "Status",
+        "nat_position": 2,
+        "nat_order": true,
+        "nat_sorting": "desc",
+        "nat_readonly": true,
+        "nat_onchange": null,
+        "nat_onfocus": null,
+        "nat_onblur": null,
+        "nat_type": "select",
+        "nat_onclick": null,
+        "nat_editable": true,
+        "nat_exibition": true,
+        "nat_width": "auto",
+        "prop": {
+          "nat_required": null,
+          "nat_maxdate": null,
+          "nat_mindate": null,
+          "nat_maxnumber": 0,
+          "nat_minnumber": 0,
+          "options": [
+            {
+              "value": 1,
+              "displayText": "ativo"
+            },
+            {
+              "value": 2,
+              "displayText": "inativo"
+            }
+          ]
+        }        
+      },
+      {
+        "nat_autonumber": "Coluna3",
+        "nat_name": "Coluna3",
+        "nat_exibitionnane": "Coluna3",
+        "nat_onchange": null,
+        "nat_onfocus": "onFocusColumn",
+        "nat_onblur": "onBlurColumn",
+        "nat_onclick": null,
+        "nat_order": true,
+        "sorting": "desc",
+        "nat_position": 3,
+        "nat_readonly": false,
+        "nat_type": "text",
+        "nat_width": "auto",
+        "prop": [
+          {
+            "required": true,
+            "minNumber": 0,
+            "maxNumber": 15,
+            "minDate": "",
+            "maxDate": "",
+            "options": null
+          }
+        ]
+      }
+    ],
+    "Rows": [
+      {
+        "001": 2,
+        "002": 2,
+        "Coluna3": ""
+      },
+      {
+        "001": 1,
+        "002": 1,
+        "Coluna3": ""
+      },
+      {
+        "001": 2,
+        "002": 1,
+        "Coluna3": ""
+      },
+      {
+        "001": 1,
+        "002": 2,
+        "Coluna3": ""
+      }
+    ]
+  },
+  "Error": null
+}

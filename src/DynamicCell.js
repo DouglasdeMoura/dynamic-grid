@@ -85,26 +85,28 @@ class DynamicCell extends React.Component {
         }
     };
 
+    handleFocus = (key, item) => {
+        if (item.nat_onfocus != null && item.nat_onfocus !== "") {
+            this.props.func[item.nat_onfocus](key, this.props.item, this.changeProperty, this.setEditable);
+        }
+    };
+
     changeProperty = (key, value) => {
         this.props.item[key] = value;
         this.setState(this.props.item);
     }
 
     setEditable = (item, key) => {
-
         if (item.edit) {
             if (item.edit.indexOf(key) >= 0) {
                 var itens = item.edit.filter(item => item !== key);
                 item.edit = itens;
-            }
-            else {
+            } else {
                 item.edit.push(key);
             }
-        }
-        else {
+        } else {
             item.edit = [key];
         }
-
         this.setState(this.props.item);
     }
 
@@ -122,6 +124,7 @@ class DynamicCell extends React.Component {
                                         value={this.props.item[item.nat_autonumber]}
                                         onChange={this.handleIntChange(item.nat_autonumber, item)}
                                         onBlur={() => this.handleBlur(item.nat_autonumber, item)}
+                                        onFocus={() => this.handleFocus(item.nat_autonumber, item)}
                                         InputLabelProps={{
                                             shrink: true
                                         }}
@@ -146,6 +149,7 @@ class DynamicCell extends React.Component {
                                         margin="normal"
                                         onChange={this.handleChange(item.nat_autonumber, item)}
                                         onBlur={() => this.handleBlur(item.nat_autonumber, item)}
+                                        onFocus={() => this.handleFocus(item.nat_autonumber, item)}
                                         required
                                     />
                                 </CustomCell>
@@ -158,6 +162,7 @@ class DynamicCell extends React.Component {
                                         value={this.props.item[item.nat_autonumber]}
                                         onChange={this.handleChange(item.nat_autonumber, item)}
                                         onBlur={() => this.handleBlur(item.nat_autonumber, item)}
+                                        onFocus={() => this.handleFocus(item.nat_autonumber, item)}
                                         InputProps={{
                                             inputComponent: NumberFormatCustom
                                         }}
@@ -174,6 +179,7 @@ class DynamicCell extends React.Component {
                                         type="date"
                                         onChange={this.handleChange(item.nat_autonumber, item)}
                                         onBlur={() => this.handleBlur(item.nat_autonumber, item)}
+                                        onFocus={() => this.handleFocus(item.nat_autonumber, item)}
                                         value={this.props.item[item.nat_autonumber]}
                                         InputProps={{ style: { fontSize: 10 } }}
                                         required
@@ -201,17 +207,13 @@ class DynamicCell extends React.Component {
                                 <CustomCell key={item.nat_autonumber + index} align="left" onClick={this.handleClick(item.nat_autonumber, item)} className={item.nat_onclick ? 'onClickClass' : null}>
                                     <CssSelect
                                         key={item.nat_autonumber + index}
-                                        select
                                         value={this.props.item[item.nat_autonumber]}
                                         required
                                         onChange={this.handleChange(item.nat_autonumber, item)}
                                         onBlur={() => this.handleBlur(item.nat_autonumber, item)}
+                                        onFocus={() => this.handleFocus(item.nat_autonumber, item)}
                                         fullWidth
-                                        SelectDisplayProps={{
-                                            style: {
-                                                width: item.nat_width
-                                            }
-                                        }}
+                                        SelectDisplayProps={{ style: { width: item.nat_width } }}
                                     >
                                         {item.prop.options.map(option => (
                                             <CssMenuItem key={option.value} value={option.value}>
@@ -229,6 +231,7 @@ class DynamicCell extends React.Component {
                                         value={this.props.item[item.nat_autonumber]}
                                         onChange={this.handleChange(item.nat_autonumber, item)}
                                         onBlur={() => this.handleBlur(item.nat_autonumber, item)}
+                                        onFocus={() => this.handleFocus(item.nat_autonumber, item)}
                                         InputProps={{ style: { fontSize: 10 } }}
                                         margin="normal"
                                         required
@@ -304,11 +307,7 @@ class DynamicCell extends React.Component {
                                         value={this.props.item[item.nat_autonumber]}
                                         disabled
                                         fullWidth
-                                        SelectDisplayProps={{
-                                            style: {
-                                                width: item.nat_width
-                                            }
-                                        }}
+                                        SelectDisplayProps={{ style: { width: item.nat_width } }}
                                     >
                                         {item.prop.options.map(option => (
                                             <CssMenuItem key={option.value} value={option.value}>

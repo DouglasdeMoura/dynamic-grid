@@ -21,6 +21,7 @@ var items7 = require('./json/model7.json');
 var items8 = require('./json/model8.json');
 var items9 = require('./json/model9.json');
 var items10 = require('./json/model10.json');
+var items11 = require('./json/model11.json');
 var Duplicate1 = require('./json/modelDuplicate.json');
 
 class SimpleTable extends React.Component {
@@ -38,6 +39,7 @@ class SimpleTable extends React.Component {
             Panel8: items8,
             Panel9: items9,
             Panel10: items10,
+            Panel11: items11,
             Duplicate1: Duplicate1,
             return: null,
             func: {
@@ -47,6 +49,8 @@ class SimpleTable extends React.Component {
                 'ShowObject': this.ShowObject,
                 'setEdit': this.setEdit,
                 'checkboxFunction': this.checkboxFunction.bind(this),
+                'onBlurColumn': this.onBlurColumn.bind(this),
+                'onFocusColumn': this.onFocusColumn.bind(this),
             }
         };
     }
@@ -75,8 +79,15 @@ class SimpleTable extends React.Component {
     }
 
     setEdit(name, item, changeState, changeEdit) {
-
         changeEdit(item, 'Coluna1');
+    }
+
+    onBlurColumn(name) {
+        console.log(`campo ${name} perdeu foco`);
+    }
+
+    onFocusColumn(name) {
+        console.log(`campo ${name} recebeu foco`);
     }
 
     AddSelectedItem(itensSelected) {
@@ -90,7 +101,7 @@ class SimpleTable extends React.Component {
             //    "005": "do",
             //    "006": "in officia ad do tempor"
             //};
-            this.state.Duplicate1.Grid.Rows.push(item);                     
+            this.state.Duplicate1.Grid.Rows.push(item);
         });
 
         this.setState(Duplicate1);
@@ -105,7 +116,7 @@ class SimpleTable extends React.Component {
 
     render() {
         return (
-            <div className="divTable">            
+            <div className="divTable">
                 <Typography variant="h5" component="h2">
                     Exemplo de Grid
                 </Typography><br />
@@ -116,22 +127,22 @@ class SimpleTable extends React.Component {
                     <ExpansionPanelDetails>
                         <DynamicGrid grid={this.state.Panel} />
                     </ExpansionPanelDetails>
-                </ExpansionPanel> 
+                </ExpansionPanel>
                 <ExpansionPanel>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
                         <Typography> 2 - Exibição da grid composta</Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
-						<Grid container>
+                        <Grid container>
                             <Grid item xs={12}>
                                 <DynamicGrid grid={this.state.Panel2} func={this.state.func} funcDuplicate={this.AddSelectedItem.bind(this)} />
-                            </Grid>                    
+                            </Grid>
                             <Grid item xs={12}>
                                 <DynamicGrid grid={this.state.Duplicate1} />
                             </Grid>
                         </Grid>
                     </ExpansionPanelDetails>
-                </ExpansionPanel> 
+                </ExpansionPanel>
                 <ExpansionPanel>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
                         <Typography>3 - Exibição da grid com paginação</Typography>
@@ -157,7 +168,7 @@ class SimpleTable extends React.Component {
                             <DynamicGrid grid={this.state.Panel5} func={this.state.func} />
                         </div>
                     </ExpansionPanelDetails>
-                </ExpansionPanel>                
+                </ExpansionPanel>
                 <ExpansionPanel>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
                         <Typography>6 - Exibição da grid com Eventos de Onclick e Onchange</Typography>
@@ -167,7 +178,7 @@ class SimpleTable extends React.Component {
                             <DynamicGrid grid={this.state.Panel6} func={this.state.func} />
                         </div>
                     </ExpansionPanelDetails>
-                </ExpansionPanel>                   
+                </ExpansionPanel>
                 <ExpansionPanel>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
                         <Typography>7 - Exibição da grid exibindo o retorno</Typography>
@@ -177,7 +188,7 @@ class SimpleTable extends React.Component {
                             <Grid item xs={12}>
                                 <DynamicGrid grid={this.state.Panel7} func={this.state.func} />
                             </Grid>
-                            <br/>
+                            <br />
                             <Grid item xs={12}>
                                 <Button variant="contained" color="primary" onClick={event => this.ShowObject(this.state.Panel9)}>
                                     Ver Dados
@@ -203,7 +214,7 @@ class SimpleTable extends React.Component {
                             <DynamicGrid disabledCheckbox grid={this.state.Panel8} func={this.state.func} />
                         </div>
                     </ExpansionPanelDetails>
-                </ExpansionPanel> 
+                </ExpansionPanel>
                 <ExpansionPanel>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
                         <Typography>9 - Exibição da grid com colunas ocultas</Typography>
@@ -213,13 +224,21 @@ class SimpleTable extends React.Component {
                             <DynamicGrid grid={this.state.Panel9} />
                         </div>
                     </ExpansionPanelDetails>
-                </ExpansionPanel>             
+                </ExpansionPanel>
                 <ExpansionPanel>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
                         <Typography> 10 - Exibição da grid com exclusão </Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
-                        <DynamicGrid grid={this.state.Panel10} funcDeleted={this.deletedItem.bind(this)}/>
+                        <DynamicGrid grid={this.state.Panel10} funcDeleted={this.deletedItem.bind(this)} />
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
+                <ExpansionPanel>
+                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+                        <Typography> 11 - Exibição da grid com select </Typography>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                        <DynamicGrid grid={this.state.Panel11} func={this.state.func} />
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
             </div>
