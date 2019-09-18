@@ -74,7 +74,7 @@ class DynamicCell extends React.Component {
         this.props.item[item.nat_autonumber] = event.target.value;
         this.setState(this.props.item);
 
-        if (item.nat_onchange !== null && item.nat_onchange !== "") {
+        if (item.nat_onchange !== null && item.nat_onchange !== "" && item.nat_onchange.indexOf("onBlur[") === -1) {
             this.props.func[item.nat_onchange](key, this.props.item, this.changeProperty, this.setEditable);
         }
     };
@@ -82,6 +82,10 @@ class DynamicCell extends React.Component {
     handleBlur = (key, item) => {
         if (item.nat_onblur != null && item.nat_onblur !== "") {
             this.props.func[item.nat_onblur](key, this.props.item, this.changeProperty, this.setEditable);
+        }
+        if (item.nat_onchange != null && item.nat_onchange !== "" && item.nat_onchange.indexOf("onBlur[") !== -1) {
+            let onBlurEvent  = item.nat_onchange.replace("onBlur[", "").replace("]", "");
+            this.props.func[onBlurEvent](key, this.props.item, this.changeProperty, this.setEditable);
         }
     };
 
