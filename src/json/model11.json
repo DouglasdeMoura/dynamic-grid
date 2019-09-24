@@ -64,7 +64,7 @@
               "displayText": "inativo"
             }
           ]
-        }        
+        }
       },
       {
         "nat_autonumber": "Coluna3",
@@ -78,16 +78,14 @@
         "nat_readonly": false,
         "nat_type": "text",
         "nat_width": "auto",
-        "prop": [
-          {
-            "required": true,
-            "minNumber": 0,
-            "maxNumber": 15,
-            "minDate": "",
-            "maxDate": "",
-            "options": null
-          }
-        ]
+        "prop": {
+          "required": true,
+          "minNumber": 0,
+          "maxNumber": 10,
+          "minDate": "",
+          "maxDate": "",
+          "options": null
+        }
       }
     ],
     "Rows": [

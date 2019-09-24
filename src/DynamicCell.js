@@ -84,7 +84,7 @@ class DynamicCell extends React.Component {
             this.props.func[item.nat_onblur](key, this.props.item, this.changeProperty, this.setEditable);
         }
         if (item.nat_onchange != null && item.nat_onchange !== "" && item.nat_onchange.indexOf("onBlur[") !== -1) {
-            let onBlurEvent  = item.nat_onchange.replace("onBlur[", "").replace("]", "");
+            let onBlurEvent = item.nat_onchange.replace("onBlur[", "").replace("]", "");
             this.props.func[onBlurEvent](key, this.props.item, this.changeProperty, this.setEditable);
         }
     };
@@ -133,6 +133,7 @@ class DynamicCell extends React.Component {
                                             shrink: true
                                         }}
                                         InputProps={{ style: { fontSize: 10 } }}
+                                        inputProps={{ maxLength: item.prop.maxNumber }}
                                         required
                                     />
                                 </CustomCell>
@@ -237,6 +238,7 @@ class DynamicCell extends React.Component {
                                         onBlur={() => this.handleBlur(item.nat_autonumber, item)}
                                         onFocus={() => this.handleFocus(item.nat_autonumber, item)}
                                         InputProps={{ style: { fontSize: 10 } }}
+                                        inputProps={{ maxLength: item.prop.maxNumber }}
                                         margin="normal"
                                         required
                                         className={'without-padding'}
