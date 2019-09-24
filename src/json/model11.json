@@ -23,11 +23,11 @@
           "options": [
             {
               "value": 1,
-              "displayText": "Cajamar"
+              "description": "Cajamar"
             },
             {
               "value": 2,
-              "displayText": "NASP"
+              "description": "NASP"
             }
           ]
         }
@@ -57,11 +57,11 @@
           "options": [
             {
               "value": 1,
-              "displayText": "ativo"
+              "description": "ativo"
             },
             {
               "value": 2,
-              "displayText": "inativo"
+              "description": "inativo"
             }
           ]
         }
@@ -79,11 +79,11 @@
         "nat_type": "text",
         "nat_width": "auto",
         "prop": {
-          "required": true,
-          "minNumber": 0,
-          "maxNumber": 10,
-          "minDate": "",
-          "maxDate": "",
+          "nat_required": null,
+          "nat_maxdate": null,
+          "nat_mindate": null,
+          "nat_maxnumber": 10,
+          "nat_minnumber": 0,
           "options": null
         }
       }

@@ -23,7 +23,7 @@
             "options": [
               {
                 "value": 1,
-                "displayText": "Natura",
+                "description": "Natura",
                 "order": 1
               }
             ]
@@ -52,7 +52,7 @@
             "options": [
               {
                 "value": 1,
-                "displayText": "Natura",
+                "description": "Natura",
                 "order": 1
               }
             ]
@@ -81,7 +81,7 @@
             "options": [
               {
                 "value": 1,
-                "displayText": "Natura",
+                "description": "Natura",
                 "order": 1
               }
             ]
@@ -110,7 +110,7 @@
             "options": [
               {
                 "value": 1,
-                "displayText": "Natura",
+                "description": "Natura",
                 "order": 1
               }
             ]
@@ -139,7 +139,7 @@
             "options": [
               {
                 "value": 1,
-                "displayText": "Natura",
+                "description": "Natura",
                 "order": 1
               }
             ]

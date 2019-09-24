@@ -65,7 +65,7 @@ class DynamicCell extends React.Component {
         this.props.item[item.nat_autonumber] = event.target.value.replace(/\D/g, '');
         this.setState(this.props.item);
 
-        if (item.nat_onchange !== null && item.nat_onchange !== "") {
+        if (item.nat_onchange !== null && item.nat_onchange !== "" && item.nat_onchange.indexOf("onBlur[") === -1) {
             this.props.func[item.nat_onchange](key, this.props.item, this.changeProperty, this.setEditable);
         }
     };
@@ -84,7 +84,7 @@ class DynamicCell extends React.Component {
             this.props.func[item.nat_onblur](key, this.props.item, this.changeProperty, this.setEditable);
         }
         if (item.nat_onchange != null && item.nat_onchange !== "" && item.nat_onchange.indexOf("onBlur[") !== -1) {
-            let onBlurEvent = item.nat_onchange.replace("onBlur[", "").replace("]", "");
+            let onBlurEvent  = item.nat_onchange.replace("onBlur[", "").replace("]", "");
             this.props.func[onBlurEvent](key, this.props.item, this.changeProperty, this.setEditable);
         }
     };
@@ -133,7 +133,7 @@ class DynamicCell extends React.Component {
                                             shrink: true
                                         }}
                                         InputProps={{ style: { fontSize: 10 } }}
-                                        inputProps={{ maxLength: item.prop.maxNumber }}
+                                        inputProps={{ maxLength: item.prop.nat_maxnumber > 0 ? item.prop.nat_maxnumber : null }}
                                         required
                                     />
                                 </CustomCell>
@@ -222,10 +222,17 @@ class DynamicCell extends React.Component {
                                     >
                                         {item.prop.options.map(option => (
                                             <CssMenuItem key={option.value} value={option.value}>
-                                                {option.displayText}
+                                                {option.description}
                                             </CssMenuItem>
                                         ))}
                                     </CssSelect>
+                                </CustomCell>
+                            );
+                        case 'Bool':
+                            let checkBoolean = this.props.item[item.nat_autonumber] === true ? 'Sim' : 'Não';
+                            return (
+                                <CustomCell key={item.nat_autonumber + index} className="readonly" onClick={this.handleClick(item.nat_autonumber, item)} className={item.nat_onclick ? 'readonly onClickClass' : 'readonly'}>
+                                    {checkBoolean}
                                 </CustomCell>
                             );
                         default:
@@ -238,7 +245,7 @@ class DynamicCell extends React.Component {
                                         onBlur={() => this.handleBlur(item.nat_autonumber, item)}
                                         onFocus={() => this.handleFocus(item.nat_autonumber, item)}
                                         InputProps={{ style: { fontSize: 10 } }}
-                                        inputProps={{ maxLength: item.prop.maxNumber }}
+                                        inputProps={{ maxLength: item.prop.nat_maxnumber > 0 ? item.prop.nat_maxnumber : null }}
                                         margin="normal"
                                         required
                                         className={'without-padding'}
@@ -317,10 +324,17 @@ class DynamicCell extends React.Component {
                                     >
                                         {item.prop.options.map(option => (
                                             <CssMenuItem key={option.value} value={option.value}>
-                                                {option.displayText}
+                                                {option.description}
                                             </CssMenuItem>
                                         ))}
                                     </CssSelect>
+                                </CustomCell>
+                            );
+                        case 'Bool':
+                            let checkBoolean = this.props.item[item.nat_autonumber] === true ? 'Sim' : 'Não';
+                            return (
+                                <CustomCell key={item.nat_autonumber + index} className="readonly" onClick={this.handleClick(item.nat_autonumber, item)} className={item.nat_onclick ? 'readonly onClickClass' : 'readonly'}>
+                                    {checkBoolean}
                                 </CustomCell>
                             );
                         default:

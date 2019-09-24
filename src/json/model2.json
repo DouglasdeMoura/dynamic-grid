@@ -24,7 +24,7 @@
             "options": [
               {
                 "value": 1,
-                "displayText": "Natura",
+                "description": "Natura",
                 "order": 1
               }
             ]
@@ -54,12 +54,12 @@
             "options": [
               {
                 "value": 1,
-                "displayText": "Natura",
+                "description": "Natura",
                 "order": 1
               },
               {
                 "value": 2,
-                "displayText": "Natura - 2",
+                "description": "Natura - 2",
                 "order": 2
               }
             ]
@@ -89,7 +89,7 @@
             "options": [
               {
                 "value": 1,
-                "displayText": "Natura",
+                "description": "Natura",
                 "order": 1
               }
             ]
