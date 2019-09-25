@@ -9,7 +9,7 @@
         "nat_order": true,
         "nat_sorting": "asc",
         "nat_readonly": false,
-        "nat_onchange": null,
+        "nat_onchange": "testarSelect",
         "nat_exibition": true,
         "nat_type": "select",
         "nat_onclick": null,

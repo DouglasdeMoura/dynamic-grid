@@ -70,12 +70,12 @@ class DynamicCell extends React.Component {
         }
     };
 
-    handleChange = (key, item) => event => {
+    handleChange = (key, item) => (event, args) => {
         this.props.item[item.nat_autonumber] = event.target.value;
         this.setState(this.props.item);
 
         if (item.nat_onchange !== null && item.nat_onchange !== "" && item.nat_onchange.indexOf("onBlur[") === -1) {
-            this.props.func[item.nat_onchange](key, this.props.item, this.changeProperty, this.setEditable);
+            this.props.func[item.nat_onchange](key, this.props.item, this.changeProperty, this.setEditable, args.props);
         }
     };
 
@@ -221,7 +221,7 @@ class DynamicCell extends React.Component {
                                         SelectDisplayProps={{ style: { width: item.nat_width } }}
                                     >
                                         {item.prop.options.map(option => (
-                                            <CssMenuItem key={option.value} value={option.value}>
+                                            <CssMenuItem id={option.description} key={option.value} value={option.value} description={option.description}>
                                                 {option.description}
                                             </CssMenuItem>
                                         ))}
@@ -323,7 +323,7 @@ class DynamicCell extends React.Component {
                                         SelectDisplayProps={{ style: { width: item.nat_width } }}
                                     >
                                         {item.prop.options.map(option => (
-                                            <CssMenuItem key={option.value} value={option.value}>
+                                            <CssMenuItem key={option.value} value={option.value} description={option.description}>
                                                 {option.description}
                                             </CssMenuItem>
                                         ))}

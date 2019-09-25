@@ -51,6 +51,7 @@ class SimpleTable extends React.Component {
                 'checkboxFunction': this.checkboxFunction.bind(this),
                 'onBlurColumn': this.onBlurColumn.bind(this),
                 'onFocusColumn': this.onFocusColumn.bind(this),
+                'testarSelect': this.testarSelect.bind(this)
             }
         };
     }
@@ -71,6 +72,11 @@ class SimpleTable extends React.Component {
 
     changeColum(name, item, changeState, changeEdit) {
         changeState('Coluna4', item[name]);
+    }
+
+    testarSelect(name, item) {
+        console.log(name);
+        console.log(item);
     }
 
     ShowObject(grid) {
