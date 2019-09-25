@@ -221,7 +221,7 @@ class DynamicCell extends React.Component {
                                         SelectDisplayProps={{ style: { width: item.nat_width } }}
                                     >
                                         {item.prop.options.map(option => (
-                                            <CssMenuItem id={option.description} key={option.value} value={option.value} description={option.description}>
+                                            <CssMenuItem key={option.value} value={option.value} description={option.description}>
                                                 {option.description}
                                             </CssMenuItem>
                                         ))}
