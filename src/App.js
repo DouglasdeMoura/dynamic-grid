@@ -74,9 +74,8 @@ class SimpleTable extends React.Component {
         changeState('Coluna4', item[name]);
     }
 
-    testarSelect(name, item) {
-        console.log(name);
-        console.log(item);
+    testarSelect(...args) {
+        console.log(args);
     }
 
     ShowObject(grid) {
