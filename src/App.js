@@ -129,10 +129,10 @@ class SimpleTable extends React.Component {
                 </Typography><br />
                 <ExpansionPanel>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-                        <Typography> 1 - Exibição da grid padrão</Typography>
+                        <Typography> 1 - Exibição da grid padrão sem selecionar</Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
-                        <DynamicGrid grid={this.state.Panel} />
+                        <DynamicGrid grid={this.state.Panel} selected={false}/>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
                 <ExpansionPanel>
@@ -142,7 +142,7 @@ class SimpleTable extends React.Component {
                     <ExpansionPanelDetails>
                         <Grid container>
                             <Grid item xs={12}>
-                                <DynamicGrid grid={this.state.Panel2} func={this.state.func} funcDuplicate={this.AddSelectedItem.bind(this)} />
+                                <DynamicGrid grid={this.state.Panel2} func={this.state.func} funcDuplicate={this.AddSelectedItem.bind(this)} selected={false} />
                             </Grid>
                             <Grid item xs={12}>
                                 <DynamicGrid grid={this.state.Duplicate1} />
