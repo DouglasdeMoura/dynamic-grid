@@ -33,7 +33,7 @@ class DynamicGridHead extends React.Component {
         return (
             <TableHead>
                 <StyledTableRow>
-                <CustomCell padding="checkbox" style={{ display: selected === false && !count ? "none" : "" }}>
+                <CustomCell padding="checkbox" style={{ display: selected === false ? "none" : "" }}>
                         <Checkbox
                             indeterminate={numSelected > 0 && numSelected < rowCount}
                             disabled={this.props.disabledCheckbox}

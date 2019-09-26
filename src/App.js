@@ -144,9 +144,7 @@ class SimpleTable extends React.Component {
                             <Grid item xs={12}>
                                 <DynamicGrid grid={this.state.Panel2} func={this.state.func} funcDuplicate={this.AddSelectedItem.bind(this)} selected={false} />
                             </Grid>
-                            <Grid item xs={12}>
-                                <DynamicGrid grid={this.state.Duplicate1} />
-                            </Grid>
+                        
                         </Grid>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>

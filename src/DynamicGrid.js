@@ -169,7 +169,7 @@ class DynamicGrid extends React.Component {
                 this.props.grid.Grid.Rows = itens;
                 this.setState(this.props.grid.Grid.Rows);
             });
-            
+
             if (!doNotRemoved) {
                 var itens = this.props.grid.Grid.Rows.filter(item => item.id !== id);
                 this.props.grid.Grid.Rows = itens;
@@ -246,7 +246,7 @@ class DynamicGrid extends React.Component {
                                             <StyledTableRow hover role="checkbox" aria-checked={isSelected}
                                                 tabIndex={-1} key={item.id} selected={isSelected}
                                             >
-                                                <CustomCell padding="checkbox" className="readonly" style={{ display: this.props.selected === false && !countView ? "none" : "" }}>
+                                                <CustomCell padding="checkbox" className="readonly" style={{ display: this.props.selected === false ? "none" : "" }}>
                                                     <Checkbox
                                                         onClick={event => this.handleClick(event, item.id)}
                                                         checked={isSelected}
@@ -277,7 +277,7 @@ class DynamicGrid extends React.Component {
                                 </StyledTableRow>
                             </TableBody>
                             <TableFooter>
-                                {countView ? <DynamicSum data={this.props.grid.Grid.Rows} columns={columns} />
+                                {countView ? <DynamicSum data={this.props.grid.Grid.Rows} columns={columns} selected={this.props.selected} />
                                     : null}
                             </TableFooter>
                         </Table>
