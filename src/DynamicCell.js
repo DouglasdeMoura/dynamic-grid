@@ -219,12 +219,18 @@ class DynamicCell extends React.Component {
                                         onFocus={() => this.handleFocus(item.nat_autonumber, item)}
                                         fullWidth
                                         SelectDisplayProps={{ style: { width: item.nat_width } }}
-                                    >
-                                        {item.prop.options.map(option => (
-                                            <CssMenuItem key={option.value} value={option.value} description={option.description}>
-                                                {option.description}
-                                            </CssMenuItem>
-                                        ))}
+                                    >sss
+                                        {(() => {
+                                            if (Array.isArray(item.prop.options)) {
+                                                item.prop.options.map(option => (
+                                                    <CssMenuItem key={option.value} value={option.value} description={option.description}>
+                                                        {option.description}
+                                                    </CssMenuItem>
+                                                ))
+                                            } else {
+                                                throw new Error(`Campo ${item.nat_name} está sem options`);
+                                            }
+                                        })()}
                                     </CssSelect>
                                 </CustomCell>
                             );
@@ -321,12 +327,18 @@ class DynamicCell extends React.Component {
                                         disabled
                                         fullWidth
                                         SelectDisplayProps={{ style: { width: item.nat_width } }}
-                                    >
-                                        {item.prop.options.map(option => (
-                                            <CssMenuItem key={option.value} value={option.value} description={option.description}>
-                                                {option.description}
-                                            </CssMenuItem>
-                                        ))}
+                                    >   
+                                    {(() => {
+                                        if (Array.isArray(item.prop.options)) {
+                                            item.prop.options.map(option => (
+                                                <CssMenuItem key={option.value} value={option.value} description={option.description}>
+                                                    {option.description}
+                                                </CssMenuItem>
+                                            ))
+                                        } else {
+                                            throw new Error(`Campo ${item.nat_name} está sem options`);
+                                        }
+                                    })()}
                                     </CssSelect>
                                 </CustomCell>
                             );
